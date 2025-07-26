@@ -1,0 +1,855 @@
+/* src/app/globals.css */
+
+/* Importar fuentes provicional tal vez*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  --max-width: 1200px;
+  --border-radius: 10px;
+  --soft-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --light-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  
+  /* Paleta de colores */
+  --color-pink-light: #bcd7f0;
+  --color-pink-medium: #C6DEF6;
+  --color-pink-dark: #93C0F0;
+  --color-cream: #E0F2FC;
+  --color-accent: #7EBBDA; 
+  --color-light: #FFF9FA;
+  --color-text: #49557A; 
+  --color-text-light: #F8F9FB;
+  --color-border: #5080BE;
+  --color-bg: #e4effb;
+
+  /* prueba de colores a ver que ondas toast*/
+  --toast-success: #66BB6A; 
+  --toast-error: #EF5350; 
+  --toast-info: #2196F3; 
+  --toast-warning: #FFC107; 
+}
+
+/* Reset y base */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Evitar scroll horizontal inesperado */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Tipografía */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--color-text);
+  margin-bottom: 0.8em;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alineación vertical para el contenido del header */
+  padding: 0.8rem 5%; /* Ajuste de padding si fuera necesario */
+  background-color: var(--color-pink-light);
+  border-bottom: 2px solid var(--color-accent);
+  box-shadow: var(--soft-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-wrap: wrap; 
+}
+
+.header-left-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.store-title {
+  font-size: 2.2rem; /* Ligeramente reducido para mejor alineación */
+  color: var(--color-text);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  margin-right: 20px;
+  margin-bottom: 0 !important;
+}
+
+.header-right-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+
+.btn-add-to-cart-modal {
+  background-color: var(--color-accent); 
+  color: var(--color-text-light); 
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 1rem; 
+  width: fit-content; 
+  align-self: flex-start; 
+}
+
+.btn-add-to-cart-modal:hover {
+  background-color: #84b3e6;
+}
+
+.auth-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-header {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-button-img {
+  filter: brightness(0) invert(1);
+  vertical-align: middle;
+}
+
+.logout-button {
+  background-color: var(--color-pink-dark);
+  color: var(--color-text-light);
+}
+
+.logout-button:hover {
+  background-color: #84b3e6;
+  transform: translateY(-2px);
+}
+
+/* Carrito */
+.container-icon {
+  position: relative;
+  margin-left: 1rem;
+}
+
+.container-cart-icon {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-cart-icon:hover {
+  transform: scale(1.1);
+}
+
+.icon-cart-img {
+  filter: brightness(0.3);
+}
+
+.count-products {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: 1px solid var(--color-light);
+}
+
+.container-cart-products {
+  position: absolute;
+  top: 3.5rem;
+  right: 0;
+  background-color: var(--color-light);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--soft-shadow);
+  z-index: 1000;
+  width: 350px;
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  animation: fadeIn 0.2s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hidden-cart {
+  display: none;
+}
+
+.cart-product {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cart-product-image-container {
+  width: 60px;
+  height: 80px;
+  margin-right: 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--light-shadow);
+  border: 1px solid var(--color-border);
+}
+
+.cart-product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-cart-product {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.cantidad-producto-carrito {
+  background-color: var(--color-pink-medium);
+  color: var(--color-text-light);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  margin-right: 0.8rem;
+}
+
+.titulo-producto-carrito {
+  font-size: 0.9rem;
+  flex-grow: 1;
+}
+
+.precio-producto-carrito {
+  font-weight: 600;
+  color: var(--color-accent);
+  font-size: 1rem;
+}
+
+.icon-close {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: var(--color-text); /* Color de texto principal */
+  transition: color 0.2s ease;
+}
+
+.icon-close:hover {
+  color: var(--color-accent); /* Rosado acento al pasar el ratón */
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--color-accent);
+}
+
+.cart-total h3 {
+  font-size: 1.1rem;
+}
+
+.total-pagar {
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--color-accent);
+}
+
+.btn-buy-in-cart {
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  padding: 0.8rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem; /* Ajustado para mejor espaciado con el total */
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-buy-in-cart:hover {
+  background-color: #84b3e6;
+}
+
+
+.btn-clear-all {
+  background-color: var(--color-pink-dark);
+  color: var(--color-text-light);
+  padding: 0.8rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.8rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-clear-all:hover {
+  background-color: #84b3e6;
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Formularios de autenticación */
+.auth-container {
+  max-width: 450px;
+  width: 90%; /* Asegura que no sea demasiado grande en móviles */
+  padding: 2.5rem;
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--soft-shadow);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Eliminado margin-top/bottom aquí para que el padre controle el centrado vertical */
+}
+
+.auth-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.auth-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  background-color: var(--color-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(232, 152, 179, 0.2);
+}
+
+.auth-button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.login-button {
+  background-color: var(--color-pink-dark);
+  color: var(--color-text-light);
+}
+
+.login-button:hover {
+  background-color: #84b3e6;
+}
+
+.register-button {
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+}
+
+.register-button:hover {
+  background-color: #84b3e6;
+}
+
+.auth-switch-text {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.auth-switch-link {
+  color: var(--color-accent);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.auth-switch-link:hover {
+  text-decoration: underline;
+}
+
+/* Lista de productos */
+.container-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: var(--max-width);
+  margin: 2rem auto;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--light-shadow);
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-border);
+  height: 100%;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--soft-shadow);
+}
+
+.item figure {
+  height: 300px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+.item:hover img {
+  transform: scale(1.05);
+}
+
+.info-product {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.info-product h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.info-product .price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--color-accent);
+  margin: 0.5rem 0;
+}
+
+.info-product button {
+  margin-top: auto;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  padding: 0.8rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.info-product button:hover {
+  background-color: #84b3e6;
+}
+
+/* Modales - Estilos generales */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background-color: var(--color-light);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  max-width: 700px;
+  width: 90%;
+  box-shadow: var(--soft-shadow);
+  position: relative;
+  border: 1px solid var(--color-border);
+  animation: scaleIn 0.2s ease-out;
+  color: var(--color-text);
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text); /* Color de texto principal */
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close-button:hover {
+  color: var(--color-accent); /* Rosado acento al pasar el ratón */
+  transform: rotate(90deg);
+}
+
+/* Estilos específicos para el modal de resumen de libro */
+.book-summary-modal-content h3 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.book-summary-modal-body {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.book-summary-modal-body img {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--light-shadow);
+}
+
+.book-summary-modal-text p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: var(--color-text);
+  font-size: 0.95em;
+}
+
+.book-summary-modal-text p strong {
+  color: var(--color-text); /* Asegura que la negrita tenga el color de texto */
+}
+
+
+.book-summary-modal-text p:last-child {
+  font-weight: 600;
+  font-size: 1.2em;
+  color: var(--color-accent);
+  margin-top: 8px;
+}
+
+/* Estilos para el modal de factura */
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.invoice-table th, .invoice-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.invoice-table th {
+  background-color: var(--color-pink-medium);
+  color: var(--color-text);
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.invoice-table tr:last-child td {
+  border-bottom: none;
+}
+
+.invoice-table td {
+  color: var(--color-text);
+  font-size: 0.95em;
+}
+
+.invoice-table td:nth-child(2), .invoice-table td:nth-child(3), .invoice-table td:nth-child(4) {
+  text-align: right;
+}
+
+.invoice-total {
+  text-align: right;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+}
+
+.invoice-thank-you {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1em;
+  color: var(--color-text);
+  font-style: italic;
+}
+
+/* Toast Notification */
+.Toast {
+  position: fixed;
+  bottom: 20px; /* Posición inferior */
+  right: 20px; /* Posición derecha */
+  top: unset; /* Asegura que no tenga top */
+  left: unset; /* Asegura que no tenga left */
+  padding: 10px 15px; /* Menos "gordito" */
+  border-radius: var(--border-radius);
+  box-shadow: var(--soft-shadow);
+  z-index: 2000; /* Asegura que esté por encima de todo */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideInBottomRight 0.3s ease-out;
+  min-width: 250px;
+  max-width: 350px;
+  word-wrap: break-word; /* Para mensajes largos */
+  color: var(--color-text-light); /* Texto blanco */
+}
+
+@keyframes slideInBottomRight {
+  from {
+    transform: translate(100%, 100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+/* Colores de fondo para cada tipo de Toast */
+.Toast.success {
+  background-color: var(--toast-success);
+}
+
+.Toast.error {
+  background-color: var(--toast-error);
+}
+
+.Toast.info {
+  background-color: var(--toast-info);
+}
+
+.Toast.warning {
+  background-color: var(--toast-warning);
+}
+
+.Toast-close-button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--color-text-light); /* Botón de cierre blanco */
+  margin-left: auto; /* Empuja el botón a la derecha */
+  transition: color 0.2s ease;
+}
+
+.Toast-close-button:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* Responsive */
+@media (max-width: 992px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .header-right-section {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .container-items {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .auth-container {
+    margin: 2.5rem auto;
+    padding: 2rem;
+  }
+  
+  .auth-container h2 {
+    font-size: 2.2rem;
+  }
+
+  .container-cart-products {
+    width: 300px;
+    right: 3%;
+    padding: 1rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+  .book-summary-modal-body {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .book-summary-modal-body img {
+    margin-bottom: 15px;
+  }
+  .Toast {
+    bottom: 10px;
+    right: 10px;
+    left: 10px; 
+    max-width: unset;
+  }
+}
+
+@media (max-width: 768px) {
+  .store-title {
+    font-size: 2rem;
+  }
+  
+  .btn-header {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .icon-button-img {
+    width: 18px !important; 
+    height: 18px !important; 
+  }
+  .icon-cart-img {
+    width: 30px !important; 
+    height: 30px !important; 
+  }
+  .count-products {
+    width: 1.3rem;
+    height: 1.3rem;
+    font-size: 0.6rem;
+    top: -0.4rem;
+    right: -0.4rem;
+  }
+  .item figure {
+    height: 250px;
+  }
+  .info-product h2 {
+    font-size: 1.3rem;
+  }
+  .info-product .price {
+    font-size: 1.3rem;
+  }
+  .info-product button {
+    padding: 0.7rem;
+    font-size: 1.1rem;
+  }
+  .auth-container {
+    margin: 1.5rem 10px;
+    padding: 1.5rem;
+    width: calc(100% - 20px);
+  }
+  .auth-container h2 {
+    font-size: 2rem;
+  }
+  .form-group label {
+    font-size: 0.9em;
+  }
+  .form-input {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+  }
+  .auth-button {
+    padding: 0.9rem;
+    font-size: 1.2rem;
+  }
+}
